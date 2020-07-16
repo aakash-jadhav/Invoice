@@ -9,3 +9,21 @@ nav {
 .carousel-item {
   background-color: whitesmoke;
 }
+
+.slider .indicators .indicator-item.active {
+  background-color: #ea7773;
+}
+
+.loginbtn {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #ea7773;
+}
+.loginbtn:hover {
+  background-color: #ff362e;
+}
+
+#about {
+  text-align: justify;
+  text-justify: inter-word;
+}

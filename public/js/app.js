@@ -4,6 +4,8 @@ $(document).ready(function () {
   $(".slider").slider({
     fullWidth: true,
   });
+  $(".scrollspy").scrollSpy();
+  $(".parallax").parallax();
 });
 
 console.log("Mic check");
