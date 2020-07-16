@@ -6,24 +6,27 @@ nav {
   font-family: "Pacifico", cursive;
 }
 
-.carousel-item {
-  background-color: whitesmoke;
-}
-
 .slider .indicators .indicator-item.active {
   background-color: #ea7773;
 }
 
-.loginbtn {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.btn {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: #ea7773;
 }
-.loginbtn:hover {
-  background-color: #ff362e;
+.btn:hover {
+  background-color: #ea7773;
 }
 
 #about {
   text-align: justify;
   text-justify: inter-word;
+}
+
+.icon {
+  color: #ea7773;
+}
+.card-panel {
+  background-color: #ea7773;
 }

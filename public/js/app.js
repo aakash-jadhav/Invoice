@@ -6,6 +6,13 @@ $(document).ready(function () {
   });
   $(".scrollspy").scrollSpy();
   $(".parallax").parallax();
+  $(".materialboxed").materialbox();
+  $("textarea#message").characterCounter();
+  $(".carousel").carousel({
+    numVisible: 7,
+    shift: 55,
+    padding: 55,
+  });
 });
 
 console.log("Mic check");
