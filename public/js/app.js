@@ -9,9 +9,9 @@ $(document).ready(function () {
   $(".materialboxed").materialbox();
   $("textarea#message").characterCounter();
   $(".carousel").carousel({
-    numVisible: 7,
+    numVisible: 5,
     shift: 55,
-    padding: 55,
+    padding: 10,
   });
 });
 
