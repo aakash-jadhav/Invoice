@@ -30,3 +30,18 @@ nav {
 .card-panel {
   background-color: #ea7773;
 }
+
+.footer-one {
+  background: #ea7773;
+}
+
+.footer-two {
+  background: #944b48;
+  margin-bottom: 0;
+}
+
+.card
+  .card-action
+  a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: #ea7773;
+}
