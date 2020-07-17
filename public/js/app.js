@@ -16,3 +16,26 @@ $(document).ready(function () {
 });
 
 console.log("Mic check");
+const txtName = document.getElementById("name");
+const txtEmail = document.getElementById("email");
+const txtMessage = document.getElementById("message");
+const btnSubmit = document.getElementById("submit");
+
+const db = firebase.firestore();
+
+btnSubmit.addEventListener("click", (e) => {
+  if (txtName.value && txtEmail.value && txtMessage.value) {
+    console.log("Submit button clicked");
+    db.collection("contact us").doc(txtName.value).set({
+      name: txtName.value,
+      email: txtEmail.value,
+      message: txtMessage.value,
+    });
+    txtName.value = "";
+    txtEmail.value = "";
+    txtMessage.value = "";
+    M.toast({ html: "Data sent successfully", classes: "rounded" });
+  } else {
+    M.toast({ html: "Values cannot be empty", classes: "rounded" });
+  }
+});
