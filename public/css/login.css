@@ -1,0 +1,21 @@
+.card {
+  margin: auto;
+  margin-top: 30%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 50%;
+
+  /* height: 100%; */
+}
+
+.btn {
+  width: 100%;
+  background-color: #ea7773;
+}
+.btn:hover {
+  background-color: #ea7773;
+}
+
+.responsive-img {
+  background: #050101d9;
+}
