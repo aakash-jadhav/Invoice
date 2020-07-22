@@ -12,28 +12,95 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
     <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
     <section class="fbackground">
       <div class="row">
-        <div class="col s12 m6">
-          <img
-            src="/img/signin.png"
-            class="responsive-img"
-            alt="Background image"
-          />
+        <div class="col s12 m6 hide-on-small-only responsive-img">
+          <img src="/img/signin.png" alt="Background image" />
         </div>
+
         <div class="col s12 m6">
           <div class="container">
-            <h1 class="red-text accent-2">
-              Sign in to Invoice
-            </h1>
-          </div>
+            <h2>
+              <i class="material-icons medium left">content_paste </i>Sign in to Invoice 
+            </h2>
+
+            
+              <div class="row">
+                <div class="input-field col s12 m12 l6">
+                  <i class="material-icons prefix icon">email</i>
+                  <input type="email" id="email" class="validate" />
+                  <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12 m12 l6">
+                  <i class="material-icons prefix icon">lock</i>
+                  <input type="password" id="pass" class="validate" />
+                  <label for="pass">Password</label>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 1rem;">
+                <button onclick="loginFunction()" class="waves-effect btn hoverable col s12 m4 l3 waves-light " >Sign in</button>
+                <a class="col s12 m8 l9 right-align">Forgot Password?</a>
+              </div>
+              <div>
+              <p class="center-align"></p>
+               <center> Don't have an account? <a href="#signUp" class="modal-trigger">Sign up</a></center>
+              </p>
+            </div>
+            </form>
+            <div class="modal" id="signUp">
+              <div class="modal-content">
+                <h4>Create an account</h4>
+                <form onsubmit="createAccount()">
+                <div class="row">
+                <div class="input-field col s12 m6">
+                  <input type="text" id="s-name" class="validate">
+                  <label for="s-name">User Name</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <input type="text" id="s-email" class="validate">
+                  <label for="s-email">Email</label>
+                </div>
+
+                <div class="input-field col s12 m6">
+                  <input type="password" id="s-pass" class="validate">
+                  <label for="s-pass">Password</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <input type="password" id="c-pass" class="validate">
+                  <label for="c-pass">Confirm Password</label>
+                </div>
+              </div>
+                <div class="modal-footer row">
+                  <button type = "submit" class="waves-effect btn hoverable waves-light" >Create Account</button>
+                  <a class="modal-close btn ">Cancel</a>
+                </div>
+              </form>
+              </div>
+            </div>
+            <div class="google center-align ">
+            <a href="#" class="waves-effect waves-light btn blue  hoverable darken-2" style="margin-top: 1rem;"><i class="fab fa-google">  </i> Sign in with google</a>
+            </div>
+          
+        </div>
+      </div>
+    </section>
+    <section class="footer">
+      <div class="row footer-two">
+        <div class="col s6">
+          <p class="white-text">&copy; Invoice</p>
+        </div>
+        <div class="col s6">
+          <p class="white-text right">Designed by Aakash Jadhav</p>
         </div>
       </div>
     </section>
   </body>
+
+ 
   <!-- jquery -->
   <script
     src="https://code.jquery.com/jquery-3.5.1.js"
@@ -42,4 +109,16 @@
   ></script>
   <!-- javascript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.16.1/firebase-app.js"></script>
+<script src="/__/firebase/7.15.5/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+
+<script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+<script src="/js/login.js"></script>
 </html>

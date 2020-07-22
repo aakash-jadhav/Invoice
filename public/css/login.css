@@ -1,21 +1,34 @@
-.card {
-  margin: auto;
-  margin-top: 30%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: 50%;
-
-  /* height: 100%; */
+* {
+  padding: none;
+  margin: none;
+}
+.responsive-img {
+  background: #050101d9;
 }
 
+.footer-two {
+  background: #050101;
+}
+
+.row {
+  margin-bottom: 0;
+}
 .btn {
-  width: 100%;
+  margin-bottom: 1rem;
   background-color: #ea7773;
 }
 .btn:hover {
   background-color: #ea7773;
 }
-
-.responsive-img {
-  background: #050101d9;
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
 }
