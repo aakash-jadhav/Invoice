@@ -1,22 +1,140 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+
+    <link rel="stylesheet" href="/css/home.css" />
   </head>
+
   <body>
-    <div class="container">
-      <h2>Dashboard</h2>
-      <a onclick="logout()" class="btn waves-effect red hoverable lighten-2">
-        Logout</a
-      >
-    </div>
+    <section class="navbar">
+      <nav>
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo left">Dashboard</a>
+            <ul class="right">
+              <li>
+                <a onclick="" class="btn white red-text waves-effect hoverable">
+                  Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br />
+    </section>
+
+    <section class="createAndSearch">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m8 l4">
+            <div class="input-field col s12">
+              <input id="search" type="search" class="validate" />
+              <label for="search"> Search</label>
+              <i class="material-icons">close</i>
+            </div>
+          </div>
+          <div class="col s12 m4 l3 offset-l5">
+            <a href="#" class="btn waves-effect waves-light hoverable new"
+              >Create New Invoice</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fcard">
+      <div class="row container">
+        <div class="col s12 m5 l4">
+          <div class="card">
+            <div class="card-content">
+              <ul class="collection grey-text text-darken-2">
+                <li class="collection-header"><h5>Customer's Name</h5></li>
+                <li class="collection-item">Invoice Number: 10234</li>
+                <li class="collection-item">Date: 23 October 1995</li>
+                <li class="collection-item">Amount: 14250</li>
+                <li class="collection-item">Status: Paid</li>
+              </ul>
+            </div>
+            <div class="card-action">
+              <a href="#">Edit</a>
+              <a href="#">Remove</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m5 l4">
+          <div class="card-panel">
+            <p class="flow-text">
+              Customer's Name
+            </p>
+
+            <span class="grey-text text-darken-2"
+              >Invoice #: BB-Gumroad-0074
+            </span>
+            <p class="grey-text text-darken-2">Issue Date: 31/8/2018</p>
+            <p class="grey-text text-darken-2">Due Date: 6/9/2018</p>
+            <p class="grey-text text-darken-2">Total Amount: 14250</p>
+            <p class="green-text">
+              Status: Paid
+            </p>
+
+            <p>
+              <a class="btn blue darken-1 hoverable waves-effect waves-light"
+                >Edit</a
+              >
+              <a
+                class="btn red darken-1 hoverable waves-effect waves-light right"
+                >Remove</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="col s12 m5 l4">
+          <div class="card-panel">
+            <p class="flow-text">
+              Customer's Name
+            </p>
+
+            <span class="grey-text text-darken-2"
+              >Invoice #: BB-Gumroad-0074
+            </span>
+            <p class="grey-text text-darken-2">Issue Date: 31/8/2018</p>
+            <p class="grey-text text-darken-2">Due Date: 6/9/2018</p>
+            <p class="grey-text text-darken-2">Total Amount: 14250</p>
+            <p class="red-text">
+              Status: Overdue
+            </p>
+
+            <p>
+              <a class="btn blue darken-1 hoverable waves-effect waves-light"
+                >Edit</a
+              >
+              <a
+                class="btn red darken-1 hoverable waves-effect waves-light right"
+                >Remove</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: Modal to create new invoice -->
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   <script src="/__/firebase/7.16.1/firebase-app.js"></script>
   <script src="/__/firebase/7.15.5/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>

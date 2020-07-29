@@ -1,0 +1,19 @@
+nav {
+  background-color: #ea7773;
+}
+.new {
+  width: 100%;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+.collection {
+  border: none;
+}
+
+.card,
+.card-panel {
+  border-radius: 10px;
+}
