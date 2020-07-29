@@ -25,7 +25,10 @@ s<!DOCTYPE html>
             <a href="#" class="brand-logo left">Dashboard</a>
             <ul class="right">
               <li>
-                <a onclick="" class="btn white red-text waves-effect hoverable">
+                <a
+                  onclick="logout()"
+                  class="btn white red-text waves-effect hoverable"
+                >
                   Logout</a
                 >
               </li>
@@ -47,7 +50,7 @@ s<!DOCTYPE html>
             </div>
           </div>
           <div class="col s12 m4 l3 offset-l5">
-            <a href="#" class="btn waves-effect waves-light hoverable new"
+            <a href="#" class="btn-large waves-effect waves-light hoverable new"
               >Create New Invoice</a
             >
           </div>
@@ -91,12 +94,13 @@ s<!DOCTYPE html>
             </p>
 
             <p>
-              <a class="btn blue darken-1 hoverable waves-effect waves-light"
-                >Edit</a
+              <a
+                class="btn-floating blue darken-1 hoverable waves-effect waves-light round"
+                ><i class="material-icons">edit</i>Edit</a
               >
               <a
-                class="btn red darken-1 hoverable waves-effect waves-light right"
-                >Remove</a
+                class="btn-floating red darken-1 hoverable waves-effect waves-light right"
+                ><i class="material-icons">delete </i>Remove</a
               >
             </p>
           </div>
