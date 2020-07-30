@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  $(".modal").modal();
+  // M.textareaAutoResize($("#address"));
+});
 
 const auth = firebase.auth();
 
