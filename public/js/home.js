@@ -1,3 +1,5 @@
+$(document).ready(function () {
+
 const auth = firebase.auth();
 
 function logout() {
@@ -13,7 +15,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     console.log(verify);
     if (!verify) {
       firebase.auth().signOut();
-      MSAssertion.toast({ html: "Email address is not verified" });
+      M.toast({ html: "Email address is not verified" });
     }
   } else {
     window.location.href = "login.html";
