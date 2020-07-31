@@ -157,19 +157,20 @@
           </div>
 
           <div class="divider"></div>
-          <div class="fproduct">
+          <div id="products">
             <div class="row">
               <div class="input-field col s12 m4">
-                <input type="text" id="name" />
-                <label for="name">Product/Service</label>
+                <input
+                  type="text"
+                  class="product"
+                  placeholder="Product/Service"
+                />
               </div>
               <div class="input-field col s12 m4">
-                <input type="number" id="quantity" />
-                <label for="quantity">Quantity</label>
+                <input type="number" class="quantity" placeholder="Quantity" />
               </div>
               <div class="input-field col s12 m4">
-                <input type="number" id="cost" />
-                <label for="cost">Cost</label>
+                <input type="number" class="cost" placeholder="Cost" />
               </div>
             </div>
           </div>
@@ -177,7 +178,8 @@
           <div class="row">
             <div class="col s12 m4">
               <button
-                class="btn blue darken-1 waves-effect waves-light col s12 m4"
+                onclick="addMore()"
+                class="btn blue darken-1 waves-effect waves-light col s12"
               >
                 Add more
               </button>
@@ -193,16 +195,20 @@
               </div>
             </div>
             <div class="col s12 m4" style="margin-top: 10px;">
-              <span class="flow-text">Total Amount:</span>
+              <p>Total Amount:<span id="totalAmt"></span></p>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect red darken-1 btn left"
+          <a
+            onclick="cancel()"
+            class="modal-close waves-effect red darken-1 btn left"
             >Cancel</a
           >
 
-          <a href="#!" class="modal-close waves-effect waves-green btn right"
+          <a
+            onclick="save()"
+            class="modal-close waves-effect waves-green btn right"
             >Save</a
           >
         </div>
