@@ -84,7 +84,7 @@ function calculateCost() {
 
 function save() {
   console.log("Save button clicked");
-  M.toast({ html: $(".product").length });
+  // M.toast({ html: $(".product").length });
   let invoice = {
     invoiceNumber: $("#invoiceNo").val(),
     issueDate: $("#issueDate").val(),
@@ -98,8 +98,11 @@ function save() {
     //   cost: $(".cost").val(),
     // },
     status: $("#status").prop("checked") ? "Paid" : "Unpaid",
+    statusColor: $("#status").prop("checked") ? "green-text" : "amber-text",
+
     totalAmt: $("#totalAmt").text(),
   };
+  // M.toast({ html: invoice.statusColor });
   for (let i = 0; i < $(".product").length; ++i) {
     let product = {};
     $(".product").each(function (index) {
@@ -114,4 +117,43 @@ function save() {
 
   console.log(JSON.stringify(invoice));
   console.log(invoice);
+
+  display(invoice);
+}
+
+function display(obj) {
+  console.log("Display function");
+  let container = $(".main");
+  let code = `
+  <div class="col s12 m5 l4">
+  <div class="card-panel">
+  <p class="flow-text">
+    ${obj.clientName}
+  </p>
+
+  <span class="grey-text text-darken-2"
+    >Invoice #: ${obj.invoiceNumber}
+  </span>
+  <p class="grey-text text-darken-2">Issue Date:${obj.issueDate}</p>
+  <p class="grey-text text-darken-2">Due Date: ${obj.dueDate}</p>
+  <p class="grey-text text-darken-2">Total Amount:${obj.totalAmt}</p>
+  <p class="${obj.statusColor}">
+    Status:${obj.status} 
+  </p>
+
+  <p>
+    <a
+      class="btn-floating blue darken-1 hoverable waves-effect waves-light round"
+      ><i class="material-icons">edit</i>Edit</a
+    >
+    <a
+      class="btn-floating red darken-1 hoverable waves-effect waves-light right"
+      ><i class="material-icons">delete </i>Remove</a
+    >
+  </p>
+</div>
+</div>`;
+
+  $(code).appendTo(container);
+  // container.innerHTML = code;
 }
