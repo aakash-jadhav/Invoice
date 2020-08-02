@@ -3,6 +3,12 @@ $(document).ready(function () {
     onOpenStart: function () {
       $("#invoiceNo").val(Math.floor(Math.random() * 1000000 + 1));
       // M.toast({ html: "Modal open" });
+      let today = new Date();
+      $(".datepicker").datepicker();
+      $("#issueDate").datepicker({
+        defaultDate: today,
+        setDefaultDate: true,
+      });
     },
     onCloseEnd: function () {
       $("input").val("");
@@ -10,12 +16,6 @@ $(document).ready(function () {
       $("#status").prop("checked", false);
       $("#totalAmt").text("");
     },
-  });
-  let today = new Date();
-  $(".datepicker").datepicker();
-  $("#issueDate").datepicker({
-    defaultDate: today,
-    setDefaultDate: true,
   });
 });
 
