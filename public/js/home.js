@@ -1,6 +1,22 @@
 $(document).ready(function () {
-  $(".modal").modal();
-  // M.textareaAutoResize($("#address"));
+  $(".modal").modal({
+    onOpenStart: function () {
+      $("#invoiceNo").val(Math.floor(Math.random() * 1000000 + 1));
+      // M.toast({ html: "Modal open" });
+    },
+    onCloseEnd: function () {
+      $("input").val("");
+      $(".extra").remove();
+      $("#status").prop("checked", false);
+      $("#totalAmt").text("");
+    },
+  });
+  let today = new Date();
+  $(".datepicker").datepicker();
+  $("#issueDate").datepicker({
+    defaultDate: today,
+    setDefaultDate: true,
+  });
 });
 
 const auth = firebase.auth();
@@ -44,7 +60,7 @@ function addMore() {
         <input type="number" class="quantity" placeholder="Quantity" />
       </div>
       <div class="input-field col s12 m4">
-        <input type="number" class="cost" placeholder="Cost" />
+        <input type="number" class="cost" placeholder="Cost" onkeyup="calculateCost()" />
       </div>
     </div>
   </div>`;
@@ -55,20 +71,47 @@ function addMore() {
 }
 
 //change total amount on enter of value
-let total = 0;
-$(".cost").keyup(function () {
-  total += $this.val();
-  $("span#totalAmt").text(total);
-});
-// $(".cost").on("change keyup", function (e) {
-//   $("#totalAmt").text(e.value);
-// });
+function calculateCost() {
+  let total = 0;
+
+  $(".cost").each(function () {
+    total += Number($(this).val());
+  });
+  // total += Number($(".cost").val());
+  // M.toast({ html: typeof total });
+  $("#totalAmt").text(total);
+}
 
 function save() {
   console.log("Save button clicked");
-}
+  M.toast({ html: $(".product").length });
+  let invoice = {
+    invoiceNumber: $("#invoiceNo").val(),
+    issueDate: $("#issueDate").val(),
+    dueDate: $("#dueDate").val(),
+    clientName: $("#clientName").val(),
+    contactNumber: $("#contactNumber").val(),
+    email: $("#email").val(),
+    products: [],
+    //   product: $(".product").val(),
+    //   quantity: $(".quantity").val(),
+    //   cost: $(".cost").val(),
+    // },
+    status: $("#status").prop("checked") ? "Paid" : "Unpaid",
+    totalAmt: $("#totalAmt").text(),
+  };
+  for (let i = 0; i < $(".product").length; ++i) {
+    let product = {};
+    $(".product").each(function (index) {
+      if (index == i) {
+        product.name = $(this).val();
+      }
+    });
+    (product.quantity = $(".quantity").val()),
+      (product.cost = $(".cost").val());
+    invoice.products.push(product);
+  }
 
-function cancel() {
-  $("input").val("");
-  $(".extra").remove();
+  console.log(JSON.stringify(invoice));
+  console.log(invoice);
 }
