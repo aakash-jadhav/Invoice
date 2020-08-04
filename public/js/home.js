@@ -118,8 +118,17 @@ function save() {
         product.name = $(this).val();
       }
     });
-    (product.quantity = $(".quantity").val()),
-      (product.cost = $(".cost").val());
+    $(".quantity").each(function (index) {
+      if (index == i) {
+        product.quantity = $(this).val();
+      }
+    });
+    $(".cost").each(function (index) {
+      if (index == i) {
+        product.cost = $(this).val();
+      }
+    });
+    // M.toast({ html: product.name });
     invoice.products.push(product);
   }
 
