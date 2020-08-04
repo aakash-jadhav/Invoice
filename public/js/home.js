@@ -20,7 +20,8 @@ $(document).ready(function () {
 });
 
 const auth = firebase.auth();
-
+const db = firebase.firestore();
+let emailId;
 function logout() {
   console.log("Logout clicked");
   firebase.auth().signOut();
@@ -30,6 +31,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser) {
     console.log("Checking user");
     console.log(firebaseUser);
+    emailId = firebaseUser.email;
     const verify = firebaseUser.emailVerified;
     console.log(verify);
     if (!verify) {
@@ -117,8 +119,22 @@ function save() {
 
   console.log(JSON.stringify(invoice));
   console.log(invoice);
-
+  firestore(invoice);
   display(invoice);
+}
+
+function firestore(obj) {
+  console.log("Saving in firestore");
+  M.toast({ html: emailId });
+  db.collection(emailId)
+    .doc(obj.invoiceNumber)
+    .set(obj)
+    .then(() => {
+      console.log("Data saved successfully");
+    })
+    .catch(() => {
+      console.log("Error occurred in saving data");
+    });
 }
 
 function display(obj) {
