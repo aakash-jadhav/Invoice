@@ -2,7 +2,6 @@ $(document).ready(function () {
   $(".modal").modal({
     onOpenStart: function () {
       $("#invoiceNo").val(Math.floor(Math.random() * 1000000 + 1));
-      // M.toast({ html: "Modal open" });
       let today = new Date();
       $(".datepicker").datepicker();
       $("#issueDate").datepicker({
@@ -29,24 +28,36 @@ function logout() {
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser) {
-    console.log("Checking user");
-    console.log(firebaseUser);
     emailId = firebaseUser.email;
+    console.log(emailId);
     const verify = firebaseUser.emailVerified;
-    console.log(verify);
+
     if (!verify) {
       firebase.auth().signOut();
       M.toast({ html: "Email address is not verified" });
     }
+    fetchData();
   } else {
     window.location.href = "login.html";
     console.log("No user");
   }
 });
 
+function fetchData() {
+  db.collection(emailId).onSnapshot((snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added") {
+        display(change.doc.data());
+      } else if (change.type == "removed") {
+        let id = change.doc.id;
+
+        $(`#${id}`).remove();
+      }
+    });
+  });
+}
 //TODO:Add more button functionality
 function addMore() {
-  console.log("Add more button clicked");
   const div = document.getElementById("products");
   var html = `<div class="divider extra"></div>
   <div id="products" class = "extra">
@@ -79,14 +90,11 @@ function calculateCost() {
   $(".cost").each(function () {
     total += Number($(this).val());
   });
-  // total += Number($(".cost").val());
-  // M.toast({ html: typeof total });
+
   $("#totalAmt").text(total);
 }
 
 function save() {
-  console.log("Save button clicked");
-  // M.toast({ html: $(".product").length });
   let invoice = {
     invoiceNumber: $("#invoiceNo").val(),
     issueDate: $("#issueDate").val(),
@@ -95,16 +103,13 @@ function save() {
     contactNumber: $("#contactNumber").val(),
     email: $("#email").val(),
     products: [],
-    //   product: $(".product").val(),
-    //   quantity: $(".quantity").val(),
-    //   cost: $(".cost").val(),
-    // },
+
     status: $("#status").prop("checked") ? "Paid" : "Unpaid",
     statusColor: $("#status").prop("checked") ? "green-text" : "amber-text",
 
     totalAmt: $("#totalAmt").text(),
   };
-  // M.toast({ html: invoice.statusColor });
+
   for (let i = 0; i < $(".product").length; ++i) {
     let product = {};
     $(".product").each(function (index) {
@@ -118,14 +123,11 @@ function save() {
   }
 
   console.log(JSON.stringify(invoice));
-  console.log(invoice);
+
   firestore(invoice);
-  display(invoice);
 }
 
 function firestore(obj) {
-  console.log("Saving in firestore");
-  M.toast({ html: emailId });
   db.collection(emailId)
     .doc(obj.invoiceNumber)
     .set(obj)
@@ -138,10 +140,9 @@ function firestore(obj) {
 }
 
 function display(obj) {
-  console.log("Display function");
   let container = $(".main");
   let code = `
-  <div class="col s12 m5 l4">
+  <div class="col s12 m5 l4" id="${obj.invoiceNumber}">
   <div class="card-panel">
   <p class="flow-text">
     ${obj.clientName}
@@ -162,14 +163,19 @@ function display(obj) {
       class="btn-floating blue darken-1 hoverable waves-effect waves-light round"
       ><i class="material-icons">edit</i>Edit</a
     >
-    <a
+    <a 
+      id = ${obj.invoiceNumber}
+      onclick = "remove(id)"
       class="btn-floating red darken-1 hoverable waves-effect waves-light right"
       ><i class="material-icons">delete </i>Remove</a
     >
   </p>
 </div>
 </div>`;
-
   $(code).appendTo(container);
-  // container.innerHTML = code;
 }
+
+function remove(id) {
+  db.collection(emailId).doc(id).delete();
+}
+function search() {}
