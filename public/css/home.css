@@ -1,8 +1,3 @@
-/* html,
-body {
-  overflow: hidden;
-} */
-
 nav {
   background-color: #ea7773;
 }
@@ -25,7 +20,3 @@ body {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* * {
-  border: 1px solid red;
-} */
