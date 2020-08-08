@@ -150,22 +150,28 @@
 
           <div class="divider"></div>
           <div id="products">
+            <blockquote>
+              Products
+            </blockquote>
             <div class="row">
               <div class="input-field col s12 m4">
                 <input
                   type="text"
                   class="product"
                   placeholder="Product/Service"
+                  
                 />
               </div>
               <div class="input-field col s12 m4">
-                <input type="number" class="quantity" placeholder="Quantity" />
+                <input type="number" class="quantity" placeholder="Quantity" 
+                />
               </div>
               <div class="input-field col s12 m4">
                 <input
                   type="number"
                   class="cost"
                   placeholder="Cost"
+                  
                   onkeyup="calculateCost()"
                 />
               </div>
@@ -176,7 +182,7 @@
             <div class="col s12 m4">
               <button
                 onclick="addMore()"
-                class="btn blue darken-1 waves-effect waves-light col s12"
+                class="btn blue darken-1 waves-effect waves-light col s12 hoverable"
               >
                 Add more
               </button>
@@ -197,14 +203,101 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="modal-close waves-effect red darken-1 btn left">Cancel</a>
+          <a class="modal-close waves-effect red darken-1 btn left hoverable">Cancel</a>
 
           <a
-            class="modal-close waves-effect waves-green btn right"
+            class="modal-close waves-effect waves-green btn right hoverable"
             onclick="save()"
             >Save</a
           >
         </div>
+      </div>
+    </section>
+
+    <section class="fedit">
+      <div class="modal" id="editModal">
+        <div class="modal-content">
+          <h5>Edit</h5>
+          <div class="row">
+            <div class="col s12 m4 input-field">
+              <input
+                type="number"
+                placeholder="invoice Number"
+                class="iNumber" 
+                id="iNumber"
+                disabled
+              />
+              <label for="iNumber">Invoice Number</label>
+            </div>
+            <div class="col s12 m4 input-field">
+              <input type="text" class="datepicker issueDate" id="idate" placeholder="Issue Date"  />
+              <label for="idate">Issue Date</label>
+            </div>
+            <div class="col s12 m4 input-field">
+              <input type="text" class="datepicker dueDate" id="ddate" placeholder="Due Date" />
+              <label for="ddate">Due Date</label>
+            </div>
+          </div>
+          <div class="divider"></div>
+          
+          <div class="row">
+            <div class="col s12 m4 input-field">
+              <input type="text" placeholder="Client Name" id="cName" class = "clientName" />
+              <label for="cName">Client's Name</label>
+            </div>
+            <div class="col s12 m4 input-field">
+              <input type="number" placeholder="Contact Number" id="cNumber" class="contactNumber" />
+              <label for="cNumber">Contact Number</label>
+            </div>
+            <div class="col s12 m4 input-field">
+              <input type="email" placeholder="Email" class = "email" id="Cemail"/>
+              <label for="Cemail">Email</label>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row">
+            <div id="addProducts">
+              <blockquote>
+                Products
+              </blockquote>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 m4">
+              <button
+                onclick="add()"
+                class="btn blue darken-1 waves-effect waves-light col s12 hoverable"
+              >
+                Add more
+              </button>
+            </div>
+            <div class="col s12 m4" style="margin-top: 10px;">
+              <div class="switch center-align">
+                <label>
+                  Unpaid
+                  <input type="checkbox" class="status" />
+                  <span class="lever"></span>
+                  Paid
+                </label>
+              </div>
+            </div>
+            <div class="col s12 m4" style="margin-top: 10px;">
+              <p>Total Amount: <span class="totalAmt"></span></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a class="modal-close waves-effect red darken-1 btn left hoverable">Cancel</a>
+
+          <a
+            class="modal-close waves-effect waves-green btn right hoverable"
+            onclick="saveChanges()"
+            >Save Changes</a
+          >
+        </div>
+      </div>
       </div>
     </section>
   </body>
