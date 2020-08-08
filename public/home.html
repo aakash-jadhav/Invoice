@@ -48,7 +48,8 @@
                 id="search"
                 type="search"
                 class="validate"
-                onkeyup="search()"
+                value=""
+                onkeyup="search(value)"
               />
               <label for="search"> Search</label>
               <i class="material-icons">close</i>
@@ -68,20 +69,20 @@
 
     <section class="fcard">
       <div class="row container main">
-        <div class="col s12 m5 l4">
+        <div class="col s12 m5 l4 content">
           <div class="card-panel">
             <p class="flow-text">
-              Customer's Name
+              Invoice Management System
             </p>
 
             <span class="grey-text text-darken-2"
-              >Invoice #: BB-Gumroad-0074
+              >Create New Invoice
             </span>
-            <p class="grey-text text-darken-2">Issue Date: 31/8/2018</p>
-            <p class="grey-text text-darken-2">Due Date: 6/9/2018</p>
-            <p class="grey-text text-darken-2">Total Amount: 14250</p>
+            <p class="grey-text text-darken-2">Edit Invoice</p>
+            <p class="grey-text text-darken-2">Delete invoice</p>
+            
             <p class="red-text">
-              Status: Overdue
+              Check status of Invoice
             </p>
 
             <p>
@@ -89,6 +90,7 @@
                 >Edit</a
               >
               <a
+              onclick="$('.content').remove()"
                 class="btn red darken-1 hoverable waves-effect waves-light right"
                 >Remove</a
               >

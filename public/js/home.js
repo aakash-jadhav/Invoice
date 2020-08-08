@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  console.log("V10");
-
+  console.log("V13");
+  $("#search").focus();
   $(".modal").modal({
     onOpenStart: function () {
       $("#invoiceNo").val(Math.floor(Math.random() * 1000000 + 1));
@@ -189,7 +189,7 @@ function firestore(obj) {
 function display(obj) {
   let container = $(".main");
   let code = `
-  <div class="col s12 m5 l4" id="${obj.invoiceNumber}">
+  <div class="col s12 m5 l4"  id="${obj.invoiceNumber}">
   <div class="card-panel">
   <p class="flow-text">
     ${obj.clientName}
@@ -229,7 +229,27 @@ function display(obj) {
 function remove(id) {
   db.collection(emailId).doc(id).delete();
 }
-function search() {}
+function search(name) {
+  console.log("Searching", name);
+  if (name === "") {
+    location.reload();
+  }
+  let ref = db.collection(emailId);
+  let query = ref.where("clientName", "==", name);
+  ref
+    .where("clientName", "==", name)
+    .get()
+    .then(function (docs) {
+      docs.forEach((doc) => {
+        if (doc.exists) {
+          // console.log(doc.id, "=>", doc.data());
+          $(".main").empty();
+          display(doc.data());
+          console.log("Display function called from search");
+        }
+      });
+    });
+}
 
 //edit
 function change(id) {
