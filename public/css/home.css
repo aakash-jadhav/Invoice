@@ -25,3 +25,7 @@ body {
   width: 80% !important ;
   max-height: 90% !important;
 }
+
+.modal .modal-footer {
+  text-align: center;
+}

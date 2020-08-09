@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  console.log("V13");
+  console.log("V18");
   $("#search").focus();
   $(".modal").modal({
     onOpenStart: function () {
@@ -251,6 +251,7 @@ function search(name) {
     });
 }
 
+let data;
 //edit
 function change(id) {
   console.log("change function");
@@ -259,7 +260,8 @@ function change(id) {
     .get()
     .then(function (doc) {
       if (doc.exists) {
-        console.log(JSON.stringify(doc.data()));
+        // console.log(JSON.stringify(doc.data()));
+        data = doc.data();
         edit(doc.data());
       } else {
         console.log("No such document");
@@ -352,4 +354,77 @@ function saveChanges() {
 
   console.log(JSON.stringify(invoice));
   firestore(invoice);
+}
+
+function generatePDF() {
+  var docDefinition = {
+    content: [
+      {
+        text: "Invoice",
+        fontSize: 22,
+        bold: true,
+        alignment: "center",
+        lineHeight: 2,
+      },
+      {
+        columns: [
+          {
+            width: "33.33%",
+            text: `Invoice Number: ${data.invoiceNumber} `,
+          },
+          {
+            width: "33.33%",
+            text: `Issue Date: ${data.issueDate}`,
+          },
+          {
+            width: "33%.33",
+            text: `Due Date: ${data.dueDate}`,
+          },
+        ],
+        // optional space between columns
+        columnGap: 10,
+      },
+      { text: "", margin: [10, 10, 10, 10] },
+
+      {
+        table: {
+          heights: [20, 20, 20],
+
+          widths: ["auto", "auto"],
+          body: [
+            [{ text: "Client Name " }, `${data.clientName}`],
+            [{ text: "Contact Number " }, `${data.contactNumber}`],
+            [{ text: "Email " }, `${data.email}`],
+          ],
+        },
+      },
+
+      { text: "", margin: [10, 10, 10, 10] },
+
+      {
+        table: {
+          heights: function () {
+            return 20;
+          },
+
+          headerRows: 1,
+          widths: ["*", "*", "*"],
+
+          body: [
+            [
+              { text: "Name", bold: true, alignment: "center" },
+              { text: "Quantity", bold: true, alignment: "center" },
+              { text: "Cost", bold: true, alignment: "center" },
+            ],
+
+            ["Value 1", "Value 2", "Value 3"],
+          ],
+        },
+      },
+    ],
+    defaultStyle: {
+      fontSize: 14,
+    },
+  };
+  pdfMake.createPdf(docDefinition).open();
 }
