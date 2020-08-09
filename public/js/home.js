@@ -47,10 +47,10 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
 function fetchData() {
   db.collection(emailId).onSnapshot((snapshot) => {
+    $(".progressbar").remove();
     snapshot.docChanges().forEach((change) => {
       if (change.type === "added") {
         display(change.doc.data());
-        $(".progressbar").remove();
       } else if (change.type == "removed") {
         let id = change.doc.id;
         $(`#${id}`).remove();
