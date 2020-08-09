@@ -357,6 +357,22 @@ function saveChanges() {
 }
 
 function generatePDF() {
+  let array = [
+    [
+      { text: "Name", bold: true, alignment: "center" },
+      { text: "Quantity", bold: true, alignment: "center" },
+      { text: "Cost", bold: true, alignment: "center" },
+    ],
+  ];
+  let source = data.products;
+  for (x of source) {
+    let row = [];
+    row.push(x.name);
+    row.push(x.quantity);
+    row.push(x.cost);
+    array.push(row);
+  }
+  console.log("Array:" + array);
   var docDefinition = {
     content: [
       {
@@ -410,20 +426,23 @@ function generatePDF() {
           headerRows: 1,
           widths: ["*", "*", "*"],
 
-          body: [
-            [
-              { text: "Name", bold: true, alignment: "center" },
-              { text: "Quantity", bold: true, alignment: "center" },
-              { text: "Cost", bold: true, alignment: "center" },
-            ],
-
-            ["Value 1", "Value 2", "Value 3"],
-          ],
+          body: array,
         },
+      },
+      {
+        text: `Total amount: ${data.totalAmt}`,
+        bold: true,
+        alignment: "right",
+        margin: [0, 20],
+      },
+      {
+        text: `Status: ${data.status}`,
+        alignment: "right",
       },
     ],
     defaultStyle: {
       fontSize: 14,
+      alignment: "center",
     },
   };
   pdfMake.createPdf(docDefinition).open();
